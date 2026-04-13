@@ -1,0 +1,20 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Deploy
+        run: |
+          rsync -av --delete ./ /home/ubuntu/github-action-ci-cd-pipeline/
+          cd /home/ubuntu/github-action-ci-cd-pipeline
+          npm i
+          pm2 restart app
