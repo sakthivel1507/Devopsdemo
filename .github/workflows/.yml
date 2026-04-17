@@ -1,0 +1,21 @@
+name: Devopsdemo
+
+on:
+  push:
+    branches: [master]
+    
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Deploy
+        run: |
+          rsync -av --delete ./ /home/ubuntu/Devopsdemo/
+          cd /home/ubuntu/Devopsdemo
+          npm i
+          pm2 restart app
