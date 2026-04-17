@@ -8,7 +8,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/health", (req, res) => {
-  res.status(200).json({ status: "ok", message: "Server is healthy"});
+  res.status(200).json({ status: "ok", message: "Server is good"});
 });
 
 if (require.main === module) {
