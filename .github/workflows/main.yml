@@ -1,4 +1,4 @@
-name: CI/CD Pipeline
+name: Devopsdemo
 
 on:
   push:
@@ -15,7 +15,7 @@ jobs:
 
       - name: Deploy
         run: |
-          rsync -av --delete ./ /home/ubuntu/github-action-ci-cd-pipeline/
-          cd /home/ubuntu/github-action-ci-cd-pipeline
+          rsync -av --delete ./ /home/ubuntu/Devopsdemo/
+          cd /home/ubuntu/Devopsdemo
           npm i
           pm2 restart app
