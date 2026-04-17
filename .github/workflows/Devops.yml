@@ -2,8 +2,7 @@ name: Devopsdemo
 
 on:
   push:
-    branches: [master]
-    
+    branches: [master]    
 jobs:
   deploy:
     runs-on: self-hosted
