@@ -1,10 +1,9 @@
-
 name: Devopsdemo
 
 on:
   push:
     branches: [master]
-    
+
 jobs:
   deploy:
     runs-on: self-hosted
@@ -15,7 +14,16 @@ jobs:
 
       - name: Deploy
         run: |
-          rsync -av --delete ./ /home/ubuntu/Devopsdemo/
+          echo "Deploy started..."
+
+          mkdir -p /home/ubuntu/Devopsdemo
+          rsync -av --exclude '.git' ./ /home/ubuntu/Devopsdemo/
+
           cd /home/ubuntu/Devopsdemo
-          npm i
-          pm2 restart app
+
+          npm install
+
+          pm2 delete app || true
+          pm2 start app.js --name app
+
+          pm2 save
